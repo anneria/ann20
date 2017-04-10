@@ -1,0 +1,143 @@
+.owl-carousel
+  display: none
+  width: 100%
+  -webkit-tap-highlight-color: transparent
+  position: relative
+  z-index: 1
+  // @extend %hero
+
+  .owl-stage
+    position: relative
+    -ms-touch-action: pan-Y
+
+  .owl-stage:after
+    content: "."
+    display: block
+    clear: both
+    visibility: hidden
+    line-height: 0
+    height: 0
+
+  .owl-stage-outer
+    position: relative
+    overflow: hidden
+
+    // fix for flashing background
+    transform: translate3d(0px, 0px, 0px)
+
+  .owl-item
+    position: relative
+    min-height: 1px
+    float: left
+    -webkit-backface-visibility: hidden
+    -webkit-tap-highlight-color: transparent
+    -webkit-touch-callout: none
+
+  // .owl-item img
+    // display: block
+    // width: 100%
+    // -webkit-transform-style: preserve-3d
+
+  .owl-nav.disabled,
+  .owl-dots.disabled
+    display: none
+
+  .owl-nav .owl-prev,
+  .owl-nav .owl-next,
+  .owl-dot
+    cursor: pointer
+    cursor: hand
+    user-select: none
+
+  .owl-dots 
+    position: absolute
+    right: 30px
+    bottom: 10px
+    +min-break($medium)
+      bottom: 30px
+  .owl-dot
+    display: inline-block
+    position: relative
+    font-family: $droidserif-italic
+    +font-size(12)
+    font-weight: bold
+    color: rgba($white, .3)
+    position: relative
+    &:before 
+      content: "/"
+      display: inline-block
+      padding-left: 0
+    &:first-child 
+      &:before 
+        content: ""
+    &:last-child
+      &:after 
+        content: ""
+        height: 1px 
+        width: 160%
+        position: absolute
+        right: -160%
+        top: 50% 
+        margin-top: -1px
+        background: $white
+    &.active,
+    &:hover
+      span 
+        color: rgba($white, 1)
+    span 
+      padding: 0 8px
+      transition: color .3s
+      +min-break($medium)
+        padding: 0 12px      
+
+  &.owl-loaded
+    display: block
+
+  &.owl-loading
+    opacity: 0
+    display: block
+
+  &.owl-hidden
+    opacity: 0
+
+  &.owl-refresh .owl-item
+    display: none
+
+  &.owl-drag .owl-item
+    user-select: none
+
+  &.owl-grab
+    cursor: move
+    cursor: grab
+
+  &.owl-rtl
+    direction: rtl
+
+  &.owl-rtl .owl-item
+    float: right
+
+  .animated
+    animation-duration: 1000ms
+    animation-fill-mode: both
+
+  .owl-animated-in
+    z-index: 0
+
+  .owl-animated-out
+    z-index: 1
+
+  .fadeOut
+    animation-name: fadeOut
+
+  @keyframes fadeOut
+    0%
+      opacity: 1
+
+    100%
+      opacity: 0
+
+// No Js
+.no-js .owl-carousel
+  display: block
+
+

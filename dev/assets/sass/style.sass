@@ -1,0 +1,44 @@
+$media-queries: true !default
+$custom-fonts  : true !default
+$sprite: true !default
+
+// resets
+@import reset/normalize
+
+// libraries
+@import libraries/library
+
+// presets
+@import base/variables
+@import base/mixins
+
+// fonts
+@import fonts/font-face
+@import fonts/font-styles
+
+// grid
+@import grid/grid
+
+// helpers
+@import base/helpers
+
+// base
+@import base/global
+
+// modules - for snippets that exist on their own and part of the page layout
+@import modules/main
+@import modules/nav 
+@import modules/header 
+@import modules/footer
+
+// elements - for snippets that are used inside the layouts, cannot exist on their own
+@import elements/svg-icons
+@import elements/buttons
+@import elements/images
+@import elements/hero
+@import elements/panel
+
+
+
+// vendor
+// @import vendor/owl-carousel

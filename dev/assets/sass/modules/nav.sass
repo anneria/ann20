@@ -1,0 +1,79 @@
+nav,
+.burger 
+	z-index: z("nav")
+
+.burger 
+	position: fixed 
+	top: 10px
+	left: 25px
+	transition: top .3s, left .3s
+	+min-break($medium)
+		top: 30px
+		left: 50px
+	> svg 
+		width: 40px
+		
+nav
+	width: 0
+	height: 100vh
+	text-align: center
+	background: rgba($codgraylight, .95)
+	position: fixed 
+	top: 0
+	left: 0
+	&.nav-open
+		animation: nav-in .5s ease-out forwards 
+	&.nav-closed
+		animation: nav-out 1s ease-out forwards  
+	@at-root
+		@keyframes nav-in
+			0%
+				width: 0
+				transform: translateX(50%)
+				opacity: 0
+			100%
+				width: 100vw
+				transform: translateX(0)
+				opacity: 1 
+		@keyframes nav-out
+			0%
+				width: 100wv
+				opacity: 1 
+			100%
+				width: 0
+				opacity: 0	
+					 
+.menu 
+	position: relative
+	+vertical-align
+	> a 
+		display: block  
+		margin-bottom: 20px
+		opacity: 0
+		transform: translateX(10%)
+	&.menu-open 
+		> a
+			animation: menu-in .2s forwards
+	&.menu-closed 
+		> a
+			animation: menu-out .3s forwards
+	@at-root
+		@for $i from 1 through 4
+			// 1st ul elem
+			.menu.menu-open > a:nth-child(#{$i})
+				animation-delay: #{$i * .1s}
+	@at-root 
+		@keyframes menu-in
+			0% 
+				opacity: 0
+				transform: translateX(10%)
+			100%
+				opacity: 1
+				transform: translateX(0)
+		@keyframes menu-out
+			0% 
+				opacity: 1
+				transform: translateX(0)
+			100%
+				opacity: 0
+				transform: translateX(10%)

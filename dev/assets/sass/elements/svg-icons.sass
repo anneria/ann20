@@ -1,0 +1,60 @@
+//logo hair
+.hair
+	fill: none
+	stroke: $gallery
+	stroke-width: 1px
+
+.eyeoutline
+	fill: none
+	stroke: $gallery
+	stroke-width: 1px
+	stroke-dasharray: 58.6
+	stroke-dashoffset: 58.6
+	opacity: 0
+	&.right 
+		stroke-dasharray: 58.6
+		stroke-dashoffset: 58.6
+		transform: scale(-1, 1)
+		transform-origin: 50% 50%
+
+.freckle
+	fill: $gallery
+	
+.jaw 
+	fill: none
+	stroke: $gallery
+	stroke-width: 1px
+	stroke-linecap: round
+	stroke-linejoin: round
+
+
+//sesame seeds on bun
+.sesame
+	fill: #eaeaea
+	opacity: 0
+	.complete-bun &
+		animation: seeds .3s forwards
+	@at-root 
+		@for $s from 1 through 7
+			.sesame:nth-of-type(#{$s})
+				animation-delay: #{$s * .1s}
+		@keyframes seeds 
+			0%
+				opacity: 0
+			100%
+				opacity: .9
+.hamlines,
+.bun-top
+	stroke: $gallery
+	stroke-width: 2px
+	stroke-linecap: round
+	stroke-linejoin: round
+
+.hamlines
+	stroke-dasharray: 60.5
+	stroke-dashoffset: 60.5
+
+.bun-top
+	fill: none
+	stroke-dasharray: 88.6
+	stroke-dashoffset: 88.6

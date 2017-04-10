@@ -1,0 +1,39 @@
+header 
+	min-height: 80vh
+	text-align: center
+	p 
+		margin-bottom: 0
+	&.header-cv 
+		min-height: 40vh
+		p 
+			+min-break($large)
+				max-width: 70%
+				margin: 0 auto
+	// animation for intro
+	h1, p 
+		transform: translateY(50%)
+		opacity: 0
+	h1 
+		.loaded & 
+			animation: intro .2s .4s ease-out forwards
+	p
+		.loaded & 
+			animation: intro .2s .6s ease-out forwards
+		@at-root 
+			@keyframes intro
+				0% 
+					transform: translateY(50%)
+					opacity: 0
+				100%
+					transform: translateY(0)
+					opacity: 1
+
+.logo 
+	width: 50%
+	max-width: 230px
+	margin-left: auto
+	margin-right: auto
+	@extend %vertical-rhythm-half
+	+min-break($large)
+		width: 25%
+		max-width: 260px

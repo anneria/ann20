@@ -1,0 +1,94 @@
+*
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+.container, 
+.container-sm,
+.container-fluid
+  margin: 0 auto
+  max-width: 100%
+  padding: 0 $gutter-width * 2
+  +min-break($medium)
+    padding: 0 $gutter-width * 4
+
+.container-fluid
+  width: 100%
+.container-sm
+  max-width: 900px
+
++min-break($large)
+  .container
+    max-width: 1280px
+
+.container-sm .row,
+.container .row,
+.container-fluid .row
+  margin-left: -1 * $gutter-width
+  margin-right: -1 * $gutter-width
+.row
+  margin-left: auto
+  margin-right: auto
+  &:after // Clear floating children
+    content: ""
+    display: table
+    clear: both
+
+  [class*='col-']
+    float: left
+    box-sizing: border-box
+    padding: 0 $gutter-width
+    min-height: 1px
+
+$i: 1
+$perc: 100% !default
+
+%columns
+  width: $perc
+  margin-left: auto
+  left: auto
+  right: auto
+
+@while $i <= $num-cols
+
+  .col-1-#{$i}
+    @extend %columns
+
+  @for $i from 1 through 3
+    .col-#{$i}-#{$i+1}
+      @extend %columns
+
+  $i: $i + 1
+
++min-break($medium)
+
+  $sizes: (2: $perc / 2, 3: $perc / 2, 4: $perc / 2, 6: $perc / 4)
+  
+  @each $col-n, $col-w in $sizes
+    .col-1-#{$col-n}
+      width: $col-w
+
+  .col-2-3,
+  .col-3-4
+    width: $perc / 2
+
++min-break($large)
+
+  $sizes: (3: $perc / 3, 4: $perc / 4, 6: $perc / 6)
+  
+  @each $col-n, $col-w in $sizes
+    .col-1-#{$col-n}
+      width: $col-w
+
+  .col-2-3
+    width: $perc / 3 * 2
+  .col-3-4
+    width: $perc / 4 * 3
+
++min-max-break($medium-min, $medium-max)
+
+  $sizes: (1: $perc, 2: $perc / 2, 3: $perc / 3)
+  
+  @each $col-n, $col-w in $sizes
+    .m-#{$col-n}
+      width: $col-w

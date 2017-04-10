@@ -1,0 +1,39 @@
+// underline hovers
+=hover-underline
+	span
+		position: relative
+		display: inline-block
+		overflow-x: hidden
+		min-height: 25px
+		padding-right: 3px
+		&:after
+			content: ""
+			width: 100%
+			height: 4px
+			position: absolute
+			display: block
+			bottom: 0
+			left: 0
+			opacity: 1
+			background-color: currentColor
+			transform: translateX(-101%)
+			transition: transform .3s
+		&:hover
+			text-decoration: none
+			&:after
+				animation: underline-in .25s forwards
+		&.out:after
+			animation: underline-out .25s forwards
+
+		// animation sequence for underline
+		@keyframes underline-in
+			0%
+				transform: translateX(-101%)
+			100%
+				transform: translateX(0)
+
+		@keyframes underline-out
+			0%
+				transform: translateX(0)
+			100%
+				transform: translate(101%)

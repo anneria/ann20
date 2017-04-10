@@ -1,0 +1,71 @@
+main 
+	position: relative
+	z-index: 2
+
+	> * 
+		position: relative
+.intro 
+	p 
+		+min-break($large)
+			max-width: 60%
+			margin: 0 auto
+// .overlay
+// 	width: 100%
+// 	height: 100%
+// 	position: fixed
+// 	top: 0
+// 	left: 0
+// 	opacity: 0
+// 	z-index: z("bottom")
+// 	background: rgba($black, .8)
+// 	transition: opacity .3s ease-out
+// 	&.active 
+// 		opacity: 1
+// 		z-index: z("overlay")
+
+#particles-js 
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	z-index: 1
+
+// CV
+[class*='cv-']
+	margin-bottom: $vertical-m
+.cv-education
+	li > a 
+		min-height: 29px
+.cv 
+	transform: translateY(10%)
+	opacity: 0
+	li  
+		date,
+		> span 
+			+font-size(12)
+			color: darken($gallery, 30%)
+		date 
+			position: absolute
+		> a,
+		> span 
+			padding-left: 60px
+		> a
+			display: inline-block
+			text-transform: none
+		> span 
+			font-style: italic
+			margin-top: -5px
+			display: block
+	.loaded & 
+		animation: intro-cv .2s .8s ease-out forwards
+		@at-root 
+			@keyframes intro-cv
+				0% 
+					transform: translateY(10%)
+					opacity: 0
+				100%
+					transform: translateY(0)
+					opacity: 1
+
+
+

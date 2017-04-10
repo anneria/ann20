@@ -1,0 +1,20 @@
+// z-index use example
+$z-layers: ("default": 1, "bottom": -1, "bottomless-pit": -2, "devpanelload": 7, "devpanel": 8, "overlay": 9, "nav": 10, "devclosenav": 11)
+@function z($layer)
+	@if not map-has-key($z-layers, $layer)
+		@warn "No layer found for `#{$layer}` in $z-layers map. Property omitted."
+	@return map-get($z-layers, $layer)
+
+// vertical & horizontal spacing
+%vertical-rhythm-half
+	margin-bottom: $vertical-s / 2
+	+min-break($medium)
+		margin-bottom: $vertical-m / 2
+%vertical-rhythm 
+	margin-bottom: $vertical-s
+	+min-break($medium)
+		margin-bottom: $vertical-m
+
+
+
+

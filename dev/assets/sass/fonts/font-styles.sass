@@ -1,0 +1,68 @@
+h1, h2, h3, h4, h5, h6, p, ul, ol, li, a, p, dl, dt, dd
+	margin: 0
+	padding: 0
+
+html
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+
+body 
+	font-family: $lato-regular 
+	color: $gallery
+	+font-size(14)
+
+h1, h2, h3, h4
+	font-weight: normal
+	text-transform: uppercase
+
+h1, h2 
+	margin-bottom: $vertical-m / 2
+h1
+	+font-size(24, 34)
+	+min-break($medium)
+		+font-size(30, 40)
+
+h2 
+	+font-size(20, 30)
+	+min-break($medium)
+		+font-size(26, 36)
+
+p
+	margin-bottom: 28px
+
+// lists
+ul, ol
+	list-style: none
+	margin-bottom: $vertical-m / 2
+	li
+		margin-bottom: 40px
+		// padding-left: 40px
+		display: block
+		position: relative
+		list-style: none
+		// font-style: italic
+		// &:before
+		// 	content: ""
+		// 	width: 24px
+		// 	height: 24px
+		// 	border-radius: 50%
+		// 	border: 2px solid $gallery
+		// 	position: absolute
+		// 	left: 0
+		// 	+vertical-align
+		&:last-child
+			margin-bottom: 0
+
+// Links
+a
+	color: $gallery
+	text-decoration: none
+	-webkit-tap-highlight-color: transparent
+	text-transform: uppercase
+	font-weight: bold 
+	&:hover,
+	&:visited
+	
+.text-link
+	+hover-underline
+	

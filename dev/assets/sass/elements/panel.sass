@@ -1,0 +1,167 @@
+// dev work thumbnails
+.dev-thumbnails 
+	> figure 
+		width: 100%
+		height: 50vh
+		overflow: hidden
+		float: left
+		opacity: 0
+		cursor: url('../img/cursor-rock.png'), pointer
+		transition: transform .2s ease-out, opacity 1s ease-out
+		+min-break($medium)
+			width: 50%
+			height: 36.5vh
+		+min-break($large)
+			width: 33.333333333%
+		&:nth-of-type(odd)
+			transform: scale(.9) translate(-30%, 20%)
+		&:nth-of-type(even)
+			transform: scale(.9) translate(30%, 20%)
+		@for $i from 1 through 5
+			// 1st ul elem
+			&:nth-of-type(#{$i})
+				transition-delay: #{$i * .1s}
+				.loaded & 
+					opacity: 1
+					transform: scale(1) translate(0)
+		&:after
+			content: ""
+			border: 0px solid transparent
+			position: absolute
+			width: 100%
+			height: 100%
+			top: 0
+			left: 0
+			display: block
+			box-sizing: border-box
+			transition: border .4s
+		// &:hover 
+		&:hover
+			&.coct
+				&:after 
+					border: 5px solid $theme-coct
+					+min-break($medium)
+						border: 10px solid $theme-coct
+			&.private 
+				&:after 
+					border: 5px solid $theme-private
+					+min-break($medium)
+						border: 10px solid $theme-private
+			&.foundation 
+				&:after 
+					border: 5px solid $theme-foundation
+					+min-break($medium)
+						border: 10px solid $theme-foundation
+			&.calculator 
+				&:after 
+					border: 5px solid $theme-calculator
+					+min-break($medium)
+						border: 10px solid $theme-calculator
+			&.morbo 
+				&:after 
+					border: 5px solid $theme-morbo
+					+min-break($medium)
+						border: 10px solid $theme-morbo
+			a 
+				transform: scale(1.08,1.08)
+				opacity: 1
+			.dev-logo
+				opacity: 0
+				top: 47%
+	a 
+		width: 100%
+		height: 100% 
+		position: relative
+		display: block
+		transition: transform .4s, opacity .4s
+		transform: scale(1,1)
+		backface-visibility: hidden
+		opacity: .15
+	.dev-logo
+		// width: 15%
+		height: 13%
+		position: absolute
+		+center-align
+		opacity: 1
+		transition: opacity .4s, top .4s
+
+// dev work detail
+.dev-detail-panel-load 
+	width: 100%
+	height: 100vh
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	background: #1a2140
+	z-index: z("devpanelload")
+	transform: translateY(100%)
+	&.inactive
+		animation: panel-out .4s ease-out forwards
+	&.active
+		animation: panel-in .4s ease-out forwards
+	@at-root 
+		@keyframes panel-in
+			0% 
+				transform: translateY(100%)
+				opacity: 0
+			100%
+				transform: translateY(0)
+				opacity: 1
+		@keyframes panel-out
+			0% 
+				transform: translateY(0)
+				opacity: 1
+			100%
+				transform: translateY(100%)
+				opacity: 0
+	
+.dev-detail-panel
+	width: 100%
+	height: 100vh
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	background: $codgray
+	z-index: z("devpanel")
+	transform: translateY(100%)
+	overflow-y: scroll
+	overflow-x: hidden
+	-webkit-overflow-scrolling: touch
+	+min-break($medium)
+		overflow: hidden
+	&.inactive
+		animation: panel-out .4s ease-out forwards
+	&.active
+		animation: panel-in .4s .4s ease-out forwards
+	@at-root 
+		@keyframes panel-in
+			0% 
+				transform: translateY(100%)
+				opacity: 0
+			100%
+				transform: translateY(0)
+				opacity: 1
+		@keyframes panel-out
+			0% 
+				transform: translateY(0)
+				opacity: 1
+			100%
+				transform: translateY(100%)
+				opacity: 0
+
+.panel-content 
+	opacity: 0
+	transform: translateY(2%)
+	transition: opacity .3s, transform .3s
+	&.active
+		opacity: 1
+		transform: translateY(0)
+	.text-link 
+		display: block 
+		+min-break($medium)
+			display: inline-block
+			margin-right: 20px
