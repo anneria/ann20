@@ -10,9 +10,12 @@
 		transition: transform .2s ease-out, opacity 1s ease-out
 		+min-break($medium)
 			width: 50%
-			height: 36.5vh
+			height: 34vh
 		+min-break($large)
-			width: 33.333333333%
+			width: 33.3333333333%
+			height: 40vh
+		+min-break($xlarge)
+			height: 49vh
 		&:nth-of-type(odd)
 			transform: scale(.9) translate(-30%, 20%)
 		&:nth-of-type(even)
@@ -37,31 +40,10 @@
 			transition: border .4s
 		// &:hover 
 		&:hover
-			&.coct
-				&:after 
-					border: 5px solid $theme-coct
-					+min-break($medium)
-						border: 10px solid $theme-coct
-			&.private 
-				&:after 
-					border: 5px solid $theme-private
-					+min-break($medium)
-						border: 10px solid $theme-private
-			&.foundation 
-				&:after 
-					border: 5px solid $theme-foundation
-					+min-break($medium)
-						border: 10px solid $theme-foundation
-			&.calculator 
-				&:after 
-					border: 5px solid $theme-calculator
-					+min-break($medium)
-						border: 10px solid $theme-calculator
-			&.morbo 
-				&:after 
-					border: 5px solid $theme-morbo
-					+min-break($medium)
-						border: 10px solid $theme-morbo
+			&:after 
+				border: 5px solid $theme-coct
+				+min-break($medium)
+					border: 10px solid $theme-coct
 			a 
 				transform: scale(1.08,1.08)
 				opacity: 1
@@ -78,7 +60,6 @@
 		backface-visibility: hidden
 		opacity: .15
 	.dev-logo
-		// width: 15%
 		height: 13%
 		position: absolute
 		+center-align

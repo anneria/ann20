@@ -6,9 +6,16 @@ screenWidth = 0,
 screenHeight = 0,
 screenType = "mobile";
 
-particlesJS.load('particles-js', 'assets/js/vendor/particles.json');
+particlesJS.load("particles-js", "assets/js/vendor/particles.data.js");
 
 $(document).ready(function(){
+
+    if (window.location.pathname == "/cv.html") {
+      $('[href="cv.html"]').removeClass("textLink").addClass("active");
+    } else {
+        $(".navDev").removeClass("textLink").addClass("active");
+    }
+
     //PRETTY ON READY
     setTimeout(function() {
         hamburgerIn();
@@ -19,34 +26,53 @@ $(document).ready(function(){
     swapDataSrc();
     swapImgSource();
 
-    // animations
-    var eyeLidLeft = $("#eyelidleft"),
-        eyeLidRight = $("#eyelidright"),
-        jaw = $("#jawline"),
-        jawLength = $("#jawline").get(0).getTotalLength(),
-        tlJawDraw = new TimelineMax(), // draw jaw
-        tlEyesDraw = new TimelineMax({onComplete: function(){ // blink eyes
-            tlEyesBlink = new TimelineMax({
-                repeat: -1
-            });
-            tlEyesBlink
-                .to(eyeLidLeft, .09, { attr: {"ry": 0} }, 4.5)
-                .to(eyeLidLeft, .09, { attr: {"ry": 9.4} })
-                .to([eyeLidLeft,eyeLidRight], .09, { attr: {"ry": 1} }, "+=3")
-                .to([eyeLidLeft,eyeLidRight], .09, { attr: {"ry": 9.4} })
-                .to([eyeLidLeft,eyeLidRight], .09, { attr: {"ry": 0} })
-                .to([eyeLidLeft,eyeLidRight], .09, { attr: {"ry": 9.4} });
-        }});
-    // blink eyes
-    tlEyesDraw
-        .to(eyeLidLeft, 1.2, {strokeDashoffset: 0, opacity: 1})
-        .add("startDrawingEyes")
-        .to(eyeLidRight, 1.2, {strokeDashoffset: 0, opacity: 1}, "startDrawingEyes-=1.05"); 
-    // draw jaw
-    jaw.css("stroke-dasharray", jawLength);
-    tlJawDraw
-        .fromTo(jaw, .8, { "stroke-dashoffset": jawLength}, { "stroke-dashoffset": 0}, 1)
+    // logo animation
+    if ($(".logo").length) {
+        var eyeLidLeft = $("#eyelidleft"),
+            eyeLidRight = $("#eyelidright"),
+            jaw = $("#jawline"),
+            jawLength = Math.round($("#jawline").get(0).getTotalLength()),
+            hair = $("#hairLine"),
+            hairLength = Math.round($("#hairLine").get(0).getTotalLength()),
+            tlJawDraw = new TimelineMax(), // draw jaw line
+            tlHairDraw = new TimelineMax(), // draw hair line
+            tlEyesDraw = new TimelineMax({onComplete: function(){ // blink eyes
+                tlEyesBlink = new TimelineMax({
+                    repeat: -1
+                });
+                tlEyesBlink
+                    .to(eyeLidLeft, .09, { attr: {"ry": 0} }, 4.5)
+                    .to(eyeLidLeft, .09, { attr: {"ry": 9.4} })
+                    .to([eyeLidLeft,eyeLidRight], .09, { attr: {"ry": 1} }, "+=3")
+                    .to([eyeLidLeft,eyeLidRight], .09, { attr: {"ry": 9.4} })
+                    .to([eyeLidLeft,eyeLidRight], .09, { attr: {"ry": 0} })
+                    .to([eyeLidLeft,eyeLidRight], .09, { attr: {"ry": 9.4} });
+            }});
+        // draw hair
+        hair.css("stroke-dasharray", hairLength);
+        tlHairDraw
+            .fromTo(hair, 3, { "stroke-dashoffset": hairLength}, { "stroke-dashoffset": 0, ease: Linear.easeNone}, 1);
+        $(".logo").hover(function() {
+            tlHairDraw.reverse();
+        }, function() {
+            tlHairDraw.play();
+        });
+        // blink eyes
+        tlEyesDraw
+            .to(eyeLidLeft, 1.2, {strokeDashoffset: 0, opacity: 1})
+            .add("startDrawingEyes")
+            .to(eyeLidRight, 1.2, {strokeDashoffset: 0, opacity: 1}, "startDrawingEyes-=1.05"); 
+        // draw jaw
+        jaw.css("stroke-dasharray", jawLength);
+        tlJawDraw
+            .fromTo(jaw, .8, { "stroke-dashoffset": jawLength}, { "stroke-dashoffset": 0}, 1)
+        setTimeout(function(){
+            $(".logo").addClass('done');
+        }, 1200)
+    }
 });
+
+
 
 $(window).resize(function () {
     // Replace img src based on device screen size
@@ -136,12 +162,12 @@ function menuOpen() {
     $("html").addClass("no-scroll");
     setTimeout(function() {
         $(".menu").removeClass("menu-closed").addClass("menu-open");
-        $("#btnCloseNav").addClass('active');
+        $("#btnCloseNav").addClass("active");
     }, 300);
 }
 function menuClose() {
     $(".menu").removeClass("menu-open").addClass("menu-closed nav-default");
-    $("#btnCloseNav").removeClass('active');
+    $("#btnCloseNav").removeClass("active");
     setTimeout(function() {
         $("#nav").addClass("nav-closed").removeClass("nav-open");
         $("html").removeClass("no-scroll");

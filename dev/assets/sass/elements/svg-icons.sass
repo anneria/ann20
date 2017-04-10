@@ -1,8 +1,9 @@
 //logo hair
 .hair
-	fill: none
+	fill: transparent
 	stroke: $gallery
 	stroke-width: 1px
+	transition: fill .4s ease-out
 
 .eyeoutline
 	fill: none
@@ -14,8 +15,8 @@
 	&.right 
 		stroke-dasharray: 58.6
 		stroke-dashoffset: 58.6
-		transform: scale(-1, 1)
-		transform-origin: 50% 50%
+		// transform: scale(-1, 1)
+		// transform-origin: 50% 50%
 
 .freckle
 	fill: $gallery
@@ -26,6 +27,19 @@
 	stroke-width: 1px
 	stroke-linecap: round
 	stroke-linejoin: round
+.freckle
+	opacity: 0
+	.done &
+		animation: freckles .3s forwards
+	@at-root 
+		@for $s from 1 through 6
+			.freckle:nth-of-type(#{$s})
+				animation-delay: #{$s * .2s}
+		@keyframes freckles 
+			0%
+				opacity: 0
+			100%
+				opacity: 1
 
 
 //sesame seeds on bun

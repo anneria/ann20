@@ -18,6 +18,12 @@
         <meta name="keywords" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="theme-color" content="#ffffff">
+
         <!-- <meta property="og:title" content="Annéria du Plessis | Portfolio" />
         <meta property="og:description" content="Online Portfolio" />
         <meta property="og:url" content="http://anneriadp.co.za/" />
@@ -29,7 +35,7 @@
     <body>
         <nav id="nav" class="nav-default">
             <div class="menu">
-                <a href="/" title="Development" class="text-link textLink"><span>Development</span></a>
+                <a href="/" title="Development" class="text-link textLink navDev"><span>Development</span></a>
                 <a href="cv.html" title="View my CV" class="text-link textLink"><span>View my CV</span></a>
                 <a href="mailto:triptoann@gmail.com" title="Get in touch" class="text-link textLink"><span>Get in touch</span></a>
                 <a href="https://www.linkedin.com/in/ann-du-plessis-9b728384/" title="Linkedin" target="_blank" class="text-link textLink"><span>Linkedin</span></a>
@@ -58,31 +64,31 @@
             
             <header class="tbl">
             	<div class="tbl-cell">
-            
             		<div class="container intro">
             			<div class="col-1-1">
             				<div class="logo">
             					<svg width="100%" height="100%" viewBox="0 0 252.7 257.8" id="logoline">
             						<path id="jawline" class="jaw" d="M31.9,202.5a113.2,113.2,0,0,0,176.3,19.4" />
-            
+            				
             						<ellipse id="eyelidleft" class="eyeoutline" cx="83.3" cy="176.5" rx="9.4" ry="9.4" />
-            						<ellipse id="eyelidright" class="eyeoutline right" cx="170.2" cy="176.5" rx="9.4" ry="9.4"/>
-            
+            						<ellipse id="eyelidright" class="eyeoutline right" cx="170.2" cy="176.5" rx="9.4" ry="9.4/>
+            				
             						<circle id="eye1" cx="83.3" cy="176.5" r="0" data-radius="5.2" />
             						<circle id="eye2" cx="170.3" cy="176.5" r="0" data-radius="5.2" />
-            
-            						<circle class="freckle" cx="79.1" cy="203.4" r="1"/>
-            						<circle class="freckle" cx="75" cy="209.1" r="1"/>
-            						<circle class="freckle" cx="82.8" cy="209.1" r="1"/>
-            						<circle class="freckle" cx="175" cy="203.4" r="1"/>
-            						<circle class="freckle" cx="170.9" cy="209.1" r="1"/>
-            						<circle class="freckle" cx="178.7" cy="209.1" r="1"/>
-            
-            						<path class="hair" d="M246.7,98.9c-9.2-27.2-25.5-45.5-40.1-57.5,12.8.1,17.6-2.5,17.6-2.5-23.5-1.9-23.1-10-56.8-22.5-23.9-8.9-52.5.9-53.5,1C131.6,10.7,139.1.4,139.1.4c-7.7,7.7-13.6,2.5-38.9,7.4S66.5,37.1,66.5,37.1s-16.2.5-26.2,10.5S28.9,58.1,23.3,60l7.3,2.7C-8.3,101.5,1.5,168.8,1.5,168.8a137.7,137.7,0,0,1,4.2-24.2C10.4,215,50.6,245.3,50.6,245.3s-24.5-32.5-21.1-75.1c0,0,41.5-5.4,50.2-67.2,0,0,1.4,38.8,48.3,61,0,0-19.9-14.2-32.1-61.6,0,0,20,49.6,72.2,59.2,0,0-32.7-21.3-44.5-53.7,0,0,24.1,45.7,68.5,42.9,0,0,33.5,42.1,9.6,88.3a35,35,0,0,0,6.5-6.1,140,140,0,0,1-10.8,20.7s10.9-8.7,24.5-31c18.5-30.3,18.3-66.4,18.3-66.4,4.9,10.4,5.6,34,5.6,34C255.5,123.5,246.7,98.9,246.7,98.9Z"/>
+            				
+            						<ellipse class="freckle" cx="79.1" cy="203.4" rx="1" ry="1"/>  
+            						<ellipse class="freckle" cx="175" cy="203.4" rx="1" ry="1"/>
+            				
+            						<ellipse class="freckle" cx="75" cy="209.1" rx="1" ry="1"/>
+            						<ellipse class="freckle" cx="170.9" cy="209.1" rx="1" ry="1"/>
+            				
+            						<ellipse class="freckle" cx="82.8" cy="209.1" rx="1" ry="1"/>
+            						<ellipse class="freckle" cx="178.7" cy="209.1" rx="1" ry="1"/>
+            				
+            						<path class="hair" id="hairLine" d="M246.7,98.9c-9.2-27.2-25.5-45.5-40.1-57.5,12.8.1,17.6-2.5,17.6-2.5-23.5-1.9-23.1-10-56.8-22.5-23.9-8.9-52.5.9-53.5,1C131.6,10.7,139.1.4,139.1.4c-7.7,7.7-13.6,2.5-38.9,7.4S66.5,37.1,66.5,37.1s-16.2.5-26.2,10.5S28.9,58.1,23.3,60l7.3,2.7C-8.3,101.5,1.5,168.8,1.5,168.8a137.7,137.7,0,0,1,4.2-24.2C10.4,215,50.6,245.3,50.6,245.3s-24.5-32.5-21.1-75.1c0,0,41.5-5.4,50.2-67.2,0,0,1.4,38.8,48.3,61,0,0-19.9-14.2-32.1-61.6,0,0,20,49.6,72.2,59.2,0,0-32.7-21.3-44.5-53.7,0,0,24.1,45.7,68.5,42.9,0,0,33.5,42.1,9.6,88.3a35,35,0,0,0,6.5-6.1,140,140,0,0,1-10.8,20.7s10.9-8.7,24.5-31c18.5-30.3,18.3-66.4,18.3-66.4,4.9,10.4,5.6,34,5.6,34C255.5,123.5,246.7,98.9,246.7,98.9Z"/>
             					</svg>
-            				</div>
-            				<h1>Jak se máš, I am Annéria.</h1>
-            			    <p>I develop digital things, mainly for the front and I have a great sense of humor.</p>    
+            				</div>				<h1>Hi, I am Annéria</h1>
+            			    <p>I develop digital things, mainly for the front. I have a great sense of humor, let&rsquo;s laugh together.</p>
             			</div>
             		</div>
             	</div>
@@ -226,5 +232,11 @@
         <script src="assets/js/vendor/particles.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
         <script src="assets/js/index.js"></script> 
+
+        <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-64972245-1','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
     </body> 
 </html>

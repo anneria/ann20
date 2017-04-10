@@ -51,6 +51,10 @@ nav
 		margin-bottom: 20px
 		opacity: 0
 		transform: translateX(10%)
+		&.active 
+			pointer-events: none
+			span:after
+				animation: underline-in .25s forwards
 	&.menu-open 
 		> a
 			animation: menu-in .2s forwards
@@ -58,7 +62,7 @@ nav
 		> a
 			animation: menu-out .3s forwards
 	@at-root
-		@for $i from 1 through 4
+		@for $i from 1 through 5
 			// 1st ul elem
 			.menu.menu-open > a:nth-child(#{$i})
 				animation-delay: #{$i * .1s}
