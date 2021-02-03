@@ -20,8 +20,8 @@
 			transform: scale(.9) translate(-30%, 20%)
 		&:nth-of-type(even)
 			transform: scale(.9) translate(30%, 20%)
-		@for $i from 1 through 5
-			// 1st ul elem
+		@for $i from 1 through 7
+			// 1st ul elem 
 			&:nth-of-type(#{$i})
 				transition-delay: #{$i * .1s}
 				.loaded & 
@@ -38,12 +38,11 @@
 			display: block
 			box-sizing: border-box
 			transition: border .4s
-		// &:hover 
-		&:hover
-			&:after 
-				border: 5px solid $theme-coct
-				+min-break($medium)
-					border: 10px solid $theme-coct
+		&:hover 
+			// &:after 
+				// border: 5px solid $theme-coct
+				// +min-break($medium)
+					// border: 10px solid $theme-coct
 			a 
 				transform: scale(1.08,1.08)
 				opacity: 1

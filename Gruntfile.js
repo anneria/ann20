@@ -74,13 +74,13 @@ module.exports = function (grunt) {
       },
     },
 
-    // express: {
-    //   dev: {
-    //     options: {
-    //       script: 'server.js'
-    //     }
-    //   }
-    // },
+    express: {
+      dev: {
+        options: {
+          script: 'server.js'
+        }
+      }
+    },
 
     // watch
     watch: {
@@ -112,6 +112,6 @@ module.exports = function (grunt) {
   if (config.USE_EXPRESS) {
     grunt.registerTask('build', ['svgmin', 'sass', 'postcss', 'compile-handlebars', 'watch', 'livereload']);
   }else{
-    grunt.registerTask('build', ['svgmin', 'sass', 'postcss', 'compile-handlebars', 'watch', 'livereload']);
+    grunt.registerTask('build', ['svgmin', 'sass', 'postcss', 'compile-handlebars', 'watch']);
   }
 };

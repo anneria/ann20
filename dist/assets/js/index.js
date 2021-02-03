@@ -51,7 +51,7 @@ $(document).ready(function(){
         // draw hair
         hair.css("stroke-dasharray", hairLength);
         tlHairDraw
-            .fromTo(hair, 3, { "stroke-dashoffset": hairLength}, { "stroke-dashoffset": 0, ease: Linear.easeNone}, 1);
+            .fromTo(hair, 1.5, { "stroke-dashoffset": hairLength}, { "stroke-dashoffset": 0, ease: Linear.easeNone}, 1);
         $(".logo").hover(function() {
             tlHairDraw.reverse();
         }, function() {
@@ -65,7 +65,7 @@ $(document).ready(function(){
         // draw jaw
         jaw.css("stroke-dasharray", jawLength);
         tlJawDraw
-            .fromTo(jaw, .8, { "stroke-dashoffset": jawLength}, { "stroke-dashoffset": 0}, 1)
+            .fromTo(jaw, 1, { "stroke-dashoffset": jawLength}, { "stroke-dashoffset": 0}, 1.5)
         setTimeout(function(){
             $(".logo").addClass('done');
         }, 1200)

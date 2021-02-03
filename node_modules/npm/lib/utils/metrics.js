@@ -4,27 +4,33 @@ exports.stop = stopMetrics
 exports.save = saveMetrics
 exports.send = sendMetrics
 
-var fs = require('fs')
-var path = require('path')
-var npm = require('../npm.js')
-var uuid = require('uuid')
+const fs = require('fs')
+const path = require('path')
+const npm = require('../npm.js')
+const regFetch = require('npm-registry-fetch')
+const { v4: uuidv4 } = require('uuid')
+const cacheFile = require('./cache-file.js')
 
-var inMetrics = false
+let inMetrics = false
 
 function startMetrics () {
-  if (inMetrics) return
+  if (inMetrics)
+    return
   // loaded on demand to avoid any recursive deps when `./metrics-launch` requires us.
   var metricsLaunch = require('./metrics-launch.js')
   npm.metricsProcess = metricsLaunch()
 }
 
 function stopMetrics () {
-  if (inMetrics) return
-  if (npm.metricsProcess) npm.metricsProcess.kill('SIGKILL')
+  if (inMetrics)
+    return
+  if (npm.metricsProcess)
+    npm.metricsProcess.kill('SIGKILL')
 }
 
 function saveMetrics (itWorked) {
-  if (inMetrics) return
+  if (inMetrics)
+    return
   // If the metrics reporter hasn't managed to PUT yet then kill it so that it doesn't
   // step on our updating the anonymous-cli-metrics json
   stopMetrics()
@@ -33,41 +39,43 @@ function saveMetrics (itWorked) {
   try {
     metrics = JSON.parse(fs.readFileSync(metricsFile))
     metrics.metrics.to = new Date().toISOString()
-    if (itWorked) {
+    if (itWorked)
       ++metrics.metrics.successfulInstalls
-    } else {
+    else
       ++metrics.metrics.failedInstalls
-    }
   } catch (ex) {
     metrics = {
-      metricId: uuid.v4(),
+      metricId: uuidv4(),
       metrics: {
         from: new Date().toISOString(),
         to: new Date().toISOString(),
         successfulInstalls: itWorked ? 1 : 0,
-        failedInstalls: itWorked ? 0 : 1
-      }
+        failedInstalls: itWorked ? 0 : 1,
+      },
     }
   }
   try {
-    fs.writeFileSync(metricsFile, JSON.stringify(metrics))
+    cacheFile.write(metricsFile, JSON.stringify(metrics))
   } catch (ex) {
-    // we couldn't write the error metrics file, um, well, oh well.
+    // we couldn't write and/or chown the error metrics file, oh well.
   }
 }
 
 function sendMetrics (metricsFile, metricsRegistry) {
   inMetrics = true
   var cliMetrics = JSON.parse(fs.readFileSync(metricsFile))
-  npm.load({}, function (err) {
-    if (err) return
-    npm.registry.config.retry.retries = 0
-    npm.registry.sendAnonymousCLIMetrics(metricsRegistry, cliMetrics, function (err) {
-      if (err) {
-        fs.writeFileSync(path.join(path.dirname(metricsFile), 'last-send-metrics-error.txt'), err.stack)
-      } else {
-        fs.unlinkSync(metricsFile)
-      }
-    })
+  regFetch(
+    `/-/npm/anon-metrics/v1/${encodeURIComponent(cliMetrics.metricId)}`,
+    // NOTE: skip npmConfig() to prevent auth
+    {
+      registry: metricsRegistry,
+      method: 'PUT',
+      body: cliMetrics.metrics,
+      retry: false,
+    }
+  ).then(() => {
+    fs.unlinkSync(metricsFile)
+  }, err => {
+    cacheFile.write(path.join(path.dirname(metricsFile), 'last-send-metrics-error.txt'), err.stack)
   })
 }
